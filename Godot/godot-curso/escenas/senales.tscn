@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bd85bcavwfpfp"]
+
+[ext_resource type="Script" uid="uid://bswhbsb1a4ff1" path="res://scripts/objeto_1.gd" id="1_twspl"]
+[ext_resource type="Script" uid="uid://dkpn3ehqacody" path="res://scripts/objeto_2.gd" id="2_b4ya7"]
+
+[node name="Node3D" type="Node3D" unique_id=1919001860]
+
+[node name="objeto1" type="Node" parent="." unique_id=1159413434]
+script = ExtResource("1_twspl")
+
+[node name="objeto2" type="Node" parent="." unique_id=930239395]
+script = ExtResource("2_b4ya7")
+
+[connection signal="Saludar" from="objeto1" to="objeto2" method="_on_objeto_1_saludar"]

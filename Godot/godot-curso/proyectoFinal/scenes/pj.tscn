@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dd8u48ane15ak"]
+
+[ext_resource type="Script" uid="uid://cm6dxgqfat2hc" path="res://proyectoFinal/scripts/pj.gd" id="1_vtxix"]
+[ext_resource type="Script" uid="uid://b7bm11e8rxk66" path="res://proyectoFinal/scripts/camara.gd" id="2_q6873"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yutxj"]
+albedo_color = Color(0.98083955, 0.8699265, 0.9174202, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_flqxx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni6o7"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_flqxx"]
+size = Vector3(0.86047363, 0.32336426, 0.7675781)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flqxx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_flqxx"]
+font_size = 30
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=328449622 groups=["Jugador"]]
+script = ExtResource("1_vtxix")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1842822220]
+material_override = SubResource("StandardMaterial3D_yutxj")
+mesh = SubResource("CapsuleMesh_flqxx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=748673652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02453971, 0.33831787, -0.26027393)
+material_override = SubResource("StandardMaterial3D_ni6o7")
+mesh = SubResource("BoxMesh_flqxx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=877036859]
+shape = SubResource("CapsuleShape3D_flqxx")
+
+[node name="pivot" type="Node3D" parent="." unique_id=152903272]
+transform = Transform3D(1, 0, 0, 0, 0.9136853, 0.40642238, 0, -0.40642238, 0.9136853, 0, 2.1218746, 3.2919862)
+script = ExtResource("2_q6873")
+
+[node name="Camera3D" type="Camera3D" parent="pivot" unique_id=126169136]
+fov = 60.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1556430748]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=81816235]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=1402247149]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Coins"
+label_settings = SubResource("LabelSettings_flqxx")

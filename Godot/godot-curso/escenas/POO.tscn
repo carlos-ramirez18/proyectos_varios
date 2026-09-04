@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://k8qvhq116nqc"]
+
+[ext_resource type="Script" uid="uid://cyr630cnkgmeo" path="res://scripts/pooBody.gd" id="1_c142c"]
+[ext_resource type="Script" uid="uid://dfeon8dpj5166" path="res://scripts/enemigo.gd" id="2_n8cng"]
+[ext_resource type="Script" uid="uid://da43r1g7cxwqr" path="res://escenas/spawn.gd" id="3_n6vjm"]
+[ext_resource type="Script" uid="uid://efdq2a7qs07p" path="res://resources/recurso.gd" id="4_0i5m1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sppfd"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_c142c"]
+sky_material = SubResource("ProceduralSkyMaterial_sppfd")
+
+[sub_resource type="Environment" id="Environment_n8cng"]
+background_mode = 2
+sky = SubResource("Sky_c142c")
+glow_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_flqxx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flqxx"]
+
+[sub_resource type="PackedScene" id="PackedScene_pcx48"]
+
+[sub_resource type="Resource" id="Resource_0i5m1"]
+script = ExtResource("4_0i5m1")
+Personaje = SubResource("PackedScene_pcx48")
+metadata/_custom_type_script = "uid://efdq2a7qs07p"
+
+[node name="Node3D" type="Node3D" unique_id=1209920646]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=847848025]
+environment = SubResource("Environment_n8cng")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=7103535]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1697077720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5021887, -0.2541504, -2.6044922)
+use_collision = true
+size = Vector3(13.165527, 0.49169922, 12.984375)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1718947353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0326128, 0)
+script = ExtResource("1_c142c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=888089949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.572296)
+mesh = SubResource("CapsuleMesh_flqxx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=497677890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.57)
+shape = SubResource("CapsuleShape3D_flqxx")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=160380604]
+transform = Transform3D(1, 0, 0, 0, 0.96691966, 0.25508106, 0, -0.25508106, 0.96691966, 0, 1.6666807, 3)
+
+[node name="Enemy" type="CharacterBody3D" parent="." unique_id=1798272675]
+script = ExtResource("2_n8cng")
+metadata/_custom_type_script = "uid://bdtt6l5qcpo0b"
+
+[node name="Node" type="Node" parent="." unique_id=120857311]
+script = ExtResource("3_n6vjm")
+Spawn = SubResource("Resource_0i5m1")

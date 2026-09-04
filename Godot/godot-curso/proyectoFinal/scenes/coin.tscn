@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b4bk6uyy67jur"]
+
+[ext_resource type="Script" uid="uid://dygb2xvlgdm86" path="res://proyectoFinal/scripts/coin.gd" id="1_g03ki"]
+[ext_resource type="ArrayMesh" uid="uid://bcirt04i7ovn6" path="res://assets/kenney_platformer-kit/Models/OBJ format/coin-gold.obj" id="1_pae25"]
+[ext_resource type="Script" uid="uid://b71pbp8go1kvm" path="res://proyectoFinal/scripts/moneda.gd" id="2_jlar8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_flqxx"]
+size = Vector3(0.28393555, 0.39663696, 0.24963379)
+
+[node name="Area3D" type="Area3D" unique_id=1231999714 groups=["Jugador"]]
+script = ExtResource("1_g03ki")
+
+[node name="CoinGold" type="MeshInstance3D" parent="." unique_id=1666948145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.107, 0, 0)
+mesh = ExtResource("1_pae25")
+script = ExtResource("2_jlar8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1689650535]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12487793, 0.21583557, -0.008117676)
+shape = SubResource("BoxShape3D_flqxx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
